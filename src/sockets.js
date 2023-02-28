@@ -21,7 +21,7 @@ export default io => {
       }
     });
 
-    // receive a message a broadcasting
+    // recibir mensaje en el broadcast
     socket.on('send message', async (data, cb) => {
       var msg = data.trim();
 
