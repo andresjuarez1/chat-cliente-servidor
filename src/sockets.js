@@ -25,7 +25,7 @@ export default io => {
     socket.on('send message', async (data, cb) => {
       var msg = data.trim();
 
-      if (msg.substr(0, 3) === '/w ') {
+      if (msg.substr(0, 3) === '/p ') {
         msg = msg.substr(3);
         var index = msg.indexOf(' ');
         if(index !== -1) {
@@ -37,10 +37,10 @@ export default io => {
               nick: socket.nickname 
             });
           } else {
-            cb('Error! Enter a valid User');
+            cb('Error! el usuario no existe');
           }
         } else {
-          cb('Error! Please enter your message');
+          cb('Error! Pofavor ingresa tu mensaje');
         }
       } else {
         var newMsg = new Chat({

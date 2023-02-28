@@ -17,21 +17,30 @@ $(function () {
 
   $nickForm.submit((e) => {
     e.preventDefault();
-    socket.emit("new user", $nickname.val(), (data) => {
-      if (data) {
-        $("#nickWrap").hide();
-        // $('#contentWrap').show();
-        document.querySelector("#contentWrap").style.display = "flex";
-        $("#message").focus();
-      } else {
-        $nickError.html(`
-            <div class="alert alert-danger">
-              That username already Exists.
-            </div>
-          `);
-      }
-    });
-    $nickname.val("");
+    if($nickname.val()== ''){
+      $nickError.html(`
+      <div class="alert alert-danger">
+        ingresa un nombre valido.
+      </div>
+    `);
+    }
+    else{
+      socket.emit("new user", $nickname.val(), (data) => {
+        if (data) {
+          $("#nickWrap").hide();
+          document.querySelector("#contentWrap").style.display = "flex";
+          $("#message").focus();
+        } else {
+          $nickError.html(`
+              <div class="alert alert-danger">
+                That username already Exists.
+              </div>
+            `);
+        }
+      });
+      $nickname.val("");
+    }
+
   });
   
 
